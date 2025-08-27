@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pomodoro Timer</title>
+  <link rel="shortcut icon" href="lotusicondark.png" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
@@ -78,6 +79,9 @@
     </section>
   </main>
 
+  <!-- 🔔 Alarm sesi -->
+  <audio id="alarm-sound" src="alarm.mp3" preload="auto"></audio>
+
   <script>
     const pomodoroDisplay = document.getElementById('pomodoro-display');
     const pomodoroSessionType = document.getElementById('pomodoro-session-type');
@@ -88,6 +92,7 @@
     const breakDurationInput = document.getElementById('break-duration-input');
     const historyList = document.getElementById('history-list');
     const clearHistoryBtn = document.getElementById('clear-history');
+    const alarmSound = document.getElementById('alarm-sound');
 
     let pomodoroMinutes = 25;
     let pomodoroSeconds = 0;
@@ -142,6 +147,9 @@
             pomodoroIsActive = false;
             pomodoroStartBtn.disabled = false;
             pomodoroPauseBtn.disabled = true;
+
+            // 🔔 Süre bittiğinde alarm çalsın
+            alarmSound.play();
 
             // Kaydet ve geçmişe ekle
             if (pomodoroIsWorkSession) {
@@ -222,8 +230,6 @@
       updatePomodoroDisplay();
       loadHistory();
     };
-
-
   </script>
 </body>
 </html>
